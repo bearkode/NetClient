@@ -14,6 +14,42 @@
 {
     NSInputStream  *mInStream;
     NSOutputStream *mOutStream;
+    
+    NSMutableData  *mReceiveBuffer;
+    NSMutableData  *mSendBuffer;
+    
+}
+
+
+- (instancetype)initWithNibName:(NSString *)aNibNameOrNil bundle:(NSBundle *)aNibBundleOrNil
+{
+    self = [super initWithNibName:aNibNameOrNil bundle:aNibBundleOrNil];
+    
+    if (self)
+    {
+        mReceiveBuffer = [[NSMutableData alloc] init];
+        mSendBuffer    = [[NSMutableData alloc] init];
+    }
+    
+    return self;
+}
+
+
+- (void)dealloc
+{
+    [mInStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [mOutStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    [mInStream close];
+    [mOutStream close];
+    
+    [mInStream release];
+    [mOutStream release];
+    
+    [mReceiveBuffer release];
+    [mSendBuffer release];
+    
+    [super dealloc];
 }
 
 
@@ -28,6 +64,21 @@
     serviceBrowser = [[NSNetServiceBrowser alloc] init];
     [serviceBrowser setDelegate:self];
     [serviceBrowser searchForServicesOfType:@"_myservice._tcp" inDomain:@""];
+    
+//    [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(timerExpired:) userInfo:nil repeats:YES];
+}
+
+
+- (void)timerExpired:(NSTimer *)aTimer
+{
+    NSDictionary *sDict    = @{ @"a" : [NSNumber numberWithInteger:arc4random()], @"b" : @"help" };
+    NSData       *sPayload = [NSJSONSerialization dataWithJSONObject:sDict options:NSJSONWritingPrettyPrinted error:nil];
+    uint16_t      sLength  = htons([sPayload length]);
+
+    [mSendBuffer appendBytes:&sLength length:2];
+    [mSendBuffer appendData:sPayload];
+    
+    [self sendPayload];
 }
 
 
@@ -65,15 +116,12 @@
         
         [mInStream retain];
         [mOutStream retain];
+
         [mInStream setDelegate:self];
         [mOutStream setDelegate:self];
         
-        [mInStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-        [mOutStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-        
-        NSLog(@"input  stream = %@", mInStream);
-        NSLog(@"output stream = %@", mOutStream);
-        NSLog(@"stream status = %d", (int)[mInStream streamStatus]);
+        [mInStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [mOutStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         
         [mInStream open];
         [mOutStream open];
@@ -109,14 +157,16 @@
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)aStreamEvent
 {
-    if (aStream == mInStream)
-    {
-        [self inputStreamHandleEvent:aStreamEvent];
-    }
-    else if (aStream == mOutStream)
-    {
-        [self outputStreamHandleEvent:aStreamEvent];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (aStream == mInStream)
+        {
+            [self inputStreamHandleEvent:aStreamEvent];
+        }
+        else if (aStream == mOutStream)
+        {
+            [self outputStreamHandleEvent:aStreamEvent];
+        }
+    });
 }
 
 
@@ -132,7 +182,20 @@
     }
     else if (aStreamEvent == NSStreamEventHasBytesAvailable)
     {
-        NSLog(@"in NSStreamEventHasBytesAvailable");
+        uint8_t   sBuffer[1024];
+        NSInteger sReadBytes = NSIntegerMax;
+        
+        while ([mInStream hasBytesAvailable])
+        {
+            sReadBytes = [mInStream read:sBuffer maxLength:1024];
+            
+            if (sReadBytes)
+            {
+                [mReceiveBuffer appendBytes:sBuffer length:sReadBytes];
+            }
+        }
+        
+        [self parseInputPackets];
     }
     else if (aStreamEvent == NSStreamEventHasSpaceAvailable)
     {
@@ -166,13 +229,7 @@
     else if (aStreamEvent == NSStreamEventHasSpaceAvailable)
     {
         NSLog(@"out NSStreamEventHasSpaceAvailable");
-        
-        NSDictionary *sDict    = @{ @"a" : [NSNumber numberWithInteger:arc4random()], @"b" : @"help" };
-        NSData       *sPayload = [NSJSONSerialization dataWithJSONObject:sDict options:NSJSONWritingPrettyPrinted error:nil];
-        uint16_t      sLength  = htons([sPayload length]);
-        
-        [mOutStream write:(uint8_t *)&sLength maxLength:2];
-        [mOutStream write:[sPayload bytes] maxLength:[sPayload length]];
+        [self sendPayload];
     }
     else if (aStreamEvent == NSStreamEventErrorOccurred)
     {
@@ -181,6 +238,52 @@
     else if (aStreamEvent == NSStreamEventEndEncountered)
     {
         NSLog(@"out NSStreamEventEndEncountered");
+    }
+}
+
+
+- (void)parseInputPackets
+{
+    NSLog(@"parseInputPackets");
+    
+    BOOL sWait = NO;
+    
+    while ([mReceiveBuffer length] && sWait == NO)
+    {
+        uint16_t sLength  = 0;
+        NSData  *sPayload = nil;
+        
+        [mReceiveBuffer getBytes:&sLength length:2];
+        
+        sLength = ntohs(sLength);
+        NSInteger sHandledLength = sLength + 2;
+        
+        if ([mReceiveBuffer length] >= sHandledLength)
+        {
+            sPayload = [mReceiveBuffer subdataWithRange:NSMakeRange(2, sLength)];
+            [mReceiveBuffer replaceBytesInRange:NSMakeRange(0, sHandledLength) withBytes:NULL length:0];
+            
+            id sJSONObject = [NSJSONSerialization JSONObjectWithData:sPayload options:0 error:NULL];
+            NSLog(@"sJSONObject = %@", sJSONObject);
+        }
+        else
+        {
+            sWait = YES;
+        }
+    }
+}
+
+
+- (void)sendPayload
+{
+    if ([mOutStream hasSpaceAvailable] && [mSendBuffer length])
+    {
+        NSInteger sWrittenLength = [(NSOutputStream *)mOutStream write:[mSendBuffer bytes] maxLength:[mSendBuffer length]];
+        
+        if (sWrittenLength > 0)
+        {
+            [mSendBuffer replaceBytesInRange:NSMakeRange(0, sWrittenLength) withBytes:NULL length:0];
+        }
     }
 }
 
