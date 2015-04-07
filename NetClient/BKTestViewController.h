@@ -1,5 +1,5 @@
 /*
- *  AppDelegate.h
+ *  BKTestViewController.h
  *  NetClient
  *
  *  Created by cgkim on 2015. 4. 6..
@@ -10,11 +10,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-
-@property (nonatomic, retain) UIWindow *window;
+@interface BKTestViewController : UIViewController <NSNetServiceBrowserDelegate, NSStreamDelegate>
 
 
 @end
-
