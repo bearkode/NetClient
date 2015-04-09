@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E5FACAA1AD5203300E3C771 /* BKStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FACA91AD5203300E3C771 /* BKStream.m */; };
+		2E5FACB01AD52DB100E3C771 /* BKTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FACAF1AD52DB100E3C771 /* BKTemp.m */; };
 		2ECD90611AD24B5F0057AC67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD90601AD24B5F0057AC67 /* main.m */; };
 		2ECD90641AD24B5F0057AC67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD90631AD24B5F0057AC67 /* AppDelegate.m */; };
 		2ECD906C1AD24B5F0057AC67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ECD906B1AD24B5F0057AC67 /* Images.xcassets */; };
@@ -29,6 +30,8 @@
 /* Begin PBXFileReference section */
 		2E5FACA81AD5203300E3C771 /* BKStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKStream.h; sourceTree = "<group>"; };
 		2E5FACA91AD5203300E3C771 /* BKStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKStream.m; sourceTree = "<group>"; };
+		2E5FACAE1AD52DB100E3C771 /* BKTemp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKTemp.h; sourceTree = "<group>"; };
+		2E5FACAF1AD52DB100E3C771 /* BKTemp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKTemp.m; sourceTree = "<group>"; };
 		2ECD905B1AD24B5F0057AC67 /* NetClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECD905F1AD24B5F0057AC67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ECD90601AD24B5F0057AC67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 				2ECD90851AD24C730057AC67 /* BKTestViewController.m */,
 				2E5FACA81AD5203300E3C771 /* BKStream.h */,
 				2E5FACA91AD5203300E3C771 /* BKStream.m */,
+				2E5FACAE1AD52DB100E3C771 /* BKTemp.h */,
+				2E5FACAF1AD52DB100E3C771 /* BKTemp.m */,
 				2ECD906B1AD24B5F0057AC67 /* Images.xcassets */,
 				2ECD906D1AD24B5F0057AC67 /* LaunchScreen.xib */,
 				2ECD905E1AD24B5F0057AC67 /* Supporting Files */,
@@ -221,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ECD90641AD24B5F0057AC67 /* AppDelegate.m in Sources */,
+				2E5FACB01AD52DB100E3C771 /* BKTemp.m in Sources */,
 				2ECD90611AD24B5F0057AC67 /* main.m in Sources */,
 				2E5FACAA1AD5203300E3C771 /* BKStream.m in Sources */,
 				2ECD90861AD24C730057AC67 /* BKTestViewController.m in Sources */,
