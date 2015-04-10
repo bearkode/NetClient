@@ -51,7 +51,7 @@
     [sServiceBrowser setDelegate:self];
     [sServiceBrowser searchForServicesOfType:@"_myservice._tcp" inDomain:@""];
     
-    [NSTimer scheduledTimerWithTimeInterval:(1.0 / 30.0) target:self selector:@selector(timerExpired:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerExpired:) userInfo:nil repeats:YES];
 }
 
 
@@ -59,10 +59,7 @@
 {
     NSDictionary  *sDict    = @{ @"a" : [NSNumber numberWithInteger:arc4random()],
                                  @"b" : @"help",
-                                 @"c" : @"asdfjas lkdfjaslkdfj asdjf lsaj lsakjd laskjd lkasjd vlasj dvlaskjd vlaksj vladk fvlkaj fvl",
-                                 @"d" : @"asdjfasd sjd vlasjd vjsa dv lkjsaldv kjsalkdvj slkj dvlsak jdvlskj dvlsk jdvlsak vl  skdlj",
-                                 @"e" : @"sd  sdjlskdjvsadvkl jsadv lksjd lksjdv lksjv asdv aslkdvj alksdjv asd vs dv",
-                                 @"f" : @11223 };
+                                 @"c" : @11223 };
     NSData        *sPayload = [NSJSONSerialization dataWithJSONObject:sDict options:NSJSONWritingPrettyPrinted error:nil];
     uint16_t       sLength  = htons([sPayload length]);
     NSMutableData *sPacket  = [NSMutableData data];
