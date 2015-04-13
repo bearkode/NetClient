@@ -20,6 +20,7 @@
     NSTimer             *mPingTimer;
     
     id                   mDelegate;
+    NSMutableArray      *mMotionStream;
 }
 
 
@@ -34,6 +35,8 @@
     {
         mServiceBrowser = [[NSNetServiceBrowser alloc] init];
         [mServiceBrowser setDelegate:self];
+        
+        mMotionStream = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -57,6 +60,8 @@
 {
     [mStream close];
     [mStream release];
+    
+    [mMotionStream release];
 
     [super dealloc];
 }
@@ -97,6 +102,8 @@
         {
             id        sJSONObject = [NSJSONSerialization JSONObjectWithData:[sPacket payload] options:0 error:NULL];
             BKMotion *sMotion     = [[[BKMotion alloc] initWithJSONObject:sJSONObject] autorelease];
+            
+            [mMotionStream addObject:sMotion];
 
             if (sMotion && [mDelegate respondsToSelector:@selector(motionController:didReceiveMotion:)])
             {

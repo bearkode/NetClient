@@ -14,9 +14,10 @@
 @interface BKMotion : NSObject
 
 
-@property (nonatomic, assign) NSInteger extenedFingerCount;
-@property (nonatomic, retain) BKVector *palmPosition;
-@property (nonatomic, retain) BKVector *palmNormal;
+@property (nonatomic, assign) NSTimeInterval timeInterval;
+@property (nonatomic, assign) NSInteger      extenedFingerCount;
+@property (nonatomic, retain) BKVector      *palmPosition;
+@property (nonatomic, retain) BKVector      *palmNormal;
 
 
 - (instancetype)initWithJSONObject:(id)aJSONObject;

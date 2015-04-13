@@ -12,12 +12,14 @@
 
 @implementation BKMotion
 {
-    NSInteger mExtendedFingerCount;
-    BKVector *mPalmPosition;
-    BKVector *mPalmNormal;
+    NSTimeInterval mTimeInterval;
+    NSInteger      mExtendedFingerCount;
+    BKVector      *mPalmPosition;
+    BKVector      *mPalmNormal;
 }
 
 
+@synthesize timeInterval       = mTimeInterval;
 @synthesize extenedFingerCount = mExtendedFingerCount;
 @synthesize palmPosition       = mPalmPosition;
 @synthesize palmNormal         = mPalmNormal;
@@ -42,6 +44,7 @@
     
     if (self)
     {
+        [self setTimeInterval:[[aJSONObject objectForKey:@"ti"] doubleValue]];
         [self setExtenedFingerCount:[[aJSONObject objectForKey:@"extendedFingerCount"] integerValue]];
         [self setPalmPosition:[BKVector vectorWithJSONObject:[aJSONObject objectForKey:@"palmPosition"]]];
         [self setPalmNormal:[BKVector vectorWithJSONObject:[aJSONObject objectForKey:@"palmNormal"]]];
@@ -68,7 +71,8 @@
 
 - (BOOL)isEqualToMotion:(BKMotion *)aMotion
 {
-    if (mExtendedFingerCount == [aMotion extenedFingerCount] &&
+    if (mTimeInterval == [aMotion timeInterval] &&
+        mExtendedFingerCount == [aMotion extenedFingerCount] &&
         [mPalmPosition isEqualToVector:[aMotion palmPosition]] &&
         [mPalmNormal isEqualToVector:[aMotion palmNormal]])
     {
@@ -84,6 +88,7 @@
 - (NSDictionary *)JSONObject
 {
     return @{ @"class" : @"motion",
+              @"ti" : [NSNumber numberWithDouble:mTimeInterval],
               @"extendedFingerCount" : [NSNumber numberWithInteger:mExtendedFingerCount],
               @"palmPosition" : [mPalmPosition JSONObject],
               @"palmNormal" : [mPalmNormal JSONObject] };
