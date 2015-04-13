@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2E5FACAA1AD5203300E3C771 /* BKStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FACA91AD5203300E3C771 /* BKStream.m */; };
-		2E5FACB01AD52DB100E3C771 /* BKTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FACAF1AD52DB100E3C771 /* BKTemp.m */; };
 		2ECD90611AD24B5F0057AC67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD90601AD24B5F0057AC67 /* main.m */; };
 		2ECD90641AD24B5F0057AC67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD90631AD24B5F0057AC67 /* AppDelegate.m */; };
 		2ECD906C1AD24B5F0057AC67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ECD906B1AD24B5F0057AC67 /* Images.xcassets */; };
 		2ECD906F1AD24B5F0057AC67 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ECD906D1AD24B5F0057AC67 /* LaunchScreen.xib */; };
 		2ECD907B1AD24B5F0057AC67 /* NetClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD907A1AD24B5F0057AC67 /* NetClientTests.m */; };
 		2ECD90861AD24C730057AC67 /* BKTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD90851AD24C730057AC67 /* BKTestViewController.m */; };
+		2EEF90451ADB527C009EE369 /* BKMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF90441ADB527C009EE369 /* BKMotion.m */; };
+		2EEF90481ADB529F009EE369 /* BKVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF90471ADB529F009EE369 /* BKVector.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +31,6 @@
 /* Begin PBXFileReference section */
 		2E5FACA81AD5203300E3C771 /* BKStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKStream.h; sourceTree = "<group>"; };
 		2E5FACA91AD5203300E3C771 /* BKStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKStream.m; sourceTree = "<group>"; };
-		2E5FACAE1AD52DB100E3C771 /* BKTemp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKTemp.h; sourceTree = "<group>"; };
-		2E5FACAF1AD52DB100E3C771 /* BKTemp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKTemp.m; sourceTree = "<group>"; };
 		2ECD905B1AD24B5F0057AC67 /* NetClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECD905F1AD24B5F0057AC67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ECD90601AD24B5F0057AC67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,6 +43,10 @@
 		2ECD907A1AD24B5F0057AC67 /* NetClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetClientTests.m; sourceTree = "<group>"; };
 		2ECD90841AD24C730057AC67 /* BKTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKTestViewController.h; sourceTree = "<group>"; };
 		2ECD90851AD24C730057AC67 /* BKTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKTestViewController.m; sourceTree = "<group>"; };
+		2EEF90431ADB527C009EE369 /* BKMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMotion.h; sourceTree = "<group>"; };
+		2EEF90441ADB527C009EE369 /* BKMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKMotion.m; sourceTree = "<group>"; };
+		2EEF90461ADB529F009EE369 /* BKVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKVector.h; sourceTree = "<group>"; };
+		2EEF90471ADB529F009EE369 /* BKVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKVector.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +94,10 @@
 				2ECD90851AD24C730057AC67 /* BKTestViewController.m */,
 				2E5FACA81AD5203300E3C771 /* BKStream.h */,
 				2E5FACA91AD5203300E3C771 /* BKStream.m */,
-				2E5FACAE1AD52DB100E3C771 /* BKTemp.h */,
-				2E5FACAF1AD52DB100E3C771 /* BKTemp.m */,
+				2EEF90431ADB527C009EE369 /* BKMotion.h */,
+				2EEF90441ADB527C009EE369 /* BKMotion.m */,
+				2EEF90461ADB529F009EE369 /* BKVector.h */,
+				2EEF90471ADB529F009EE369 /* BKVector.m */,
 				2ECD906B1AD24B5F0057AC67 /* Images.xcassets */,
 				2ECD906D1AD24B5F0057AC67 /* LaunchScreen.xib */,
 				2ECD905E1AD24B5F0057AC67 /* Supporting Files */,
@@ -175,6 +180,7 @@
 				TargetAttributes = {
 					2ECD905A1AD24B5F0057AC67 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = F5NU2PA3PK;
 					};
 					2ECD90731AD24B5F0057AC67 = {
 						CreatedOnToolsVersion = 6.2;
@@ -226,8 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ECD90641AD24B5F0057AC67 /* AppDelegate.m in Sources */,
-				2E5FACB01AD52DB100E3C771 /* BKTemp.m in Sources */,
+				2EEF90451ADB527C009EE369 /* BKMotion.m in Sources */,
 				2ECD90611AD24B5F0057AC67 /* main.m in Sources */,
+				2EEF90481ADB529F009EE369 /* BKVector.m in Sources */,
 				2E5FACAA1AD5203300E3C771 /* BKStream.m in Sources */,
 				2ECD90861AD24C730057AC67 /* BKTestViewController.m in Sources */,
 			);
@@ -344,7 +351,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = NetClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -355,7 +364,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = NetClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
