@@ -24,6 +24,7 @@
     if (self)
     {
         mMotionController = [[BKMotionController alloc] init];
+        [mMotionController setDelegate:self];
     }
     
     return self;
@@ -51,6 +52,12 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+- (void)motionController:(BKMotionController *)aMotionController didReceiveMotion:(BKMotion *)aMotion
+{
+    NSLog(@"sMotion = %@", aMotion);
 }
 
 

@@ -8,7 +8,9 @@
  */
 
 #import "BKMotionController.h"
+#import "BKStream.h"
 #import "BKPacket.h"
+#import "BKMotion.h"
 
 
 @implementation BKMotionController
@@ -16,7 +18,12 @@
     BKStream            *mStream;
     NSNetServiceBrowser *mServiceBrowser;
     NSTimer             *mPingTimer;
+    
+    id                   mDelegate;
 }
+
+
+@synthesize delegate = mDelegate;
 
 
 - (instancetype)init
@@ -27,6 +34,19 @@
     {
         mServiceBrowser = [[NSNetServiceBrowser alloc] init];
         [mServiceBrowser setDelegate:self];
+    }
+    
+    return self;
+}
+
+
+- (instancetype)initWithDelegate:(id)aDelegate
+{
+    self = [self init];
+    
+    if (self)
+    {
+        [self setDelegate:aDelegate];
     }
     
     return self;
@@ -75,8 +95,13 @@
         
         if (sPacket)
         {
-            id sJSONObject = [NSJSONSerialization JSONObjectWithData:[sPacket payload] options:0 error:NULL];
-            NSLog(@"sJSONObject = %@", sJSONObject);
+            id        sJSONObject = [NSJSONSerialization JSONObjectWithData:[sPacket payload] options:0 error:NULL];
+            BKMotion *sMotion     = [[[BKMotion alloc] initWithJSONObject:sJSONObject] autorelease];
+
+            if (sMotion && [mDelegate respondsToSelector:@selector(motionController:didReceiveMotion:)])
+            {
+                [mDelegate motionController:self didReceiveMotion:sMotion];
+            }
         }
 
         return [sPacket length];

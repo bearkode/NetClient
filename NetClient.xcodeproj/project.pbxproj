@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2E5FACAA1AD5203300E3C771 /* BKStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FACA91AD5203300E3C771 /* BKStream.m */; };
+		2E9F712A1ADB9FE600133483 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9F71241ADB9FE600133483 /* 0.png */; };
+		2E9F712B1ADB9FE600133483 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9F71251ADB9FE600133483 /* 1.png */; };
+		2E9F712C1ADB9FE600133483 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9F71261ADB9FE600133483 /* 2.png */; };
+		2E9F712D1ADB9FE600133483 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9F71271ADB9FE600133483 /* 3.png */; };
+		2E9F712E1ADB9FE600133483 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9F71281ADB9FE600133483 /* 4.png */; };
+		2E9F712F1ADB9FE600133483 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9F71291ADB9FE600133483 /* 5.png */; };
 		2ECD90611AD24B5F0057AC67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD90601AD24B5F0057AC67 /* main.m */; };
 		2ECD90641AD24B5F0057AC67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD90631AD24B5F0057AC67 /* AppDelegate.m */; };
 		2ECD906C1AD24B5F0057AC67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ECD906B1AD24B5F0057AC67 /* Images.xcassets */; };
@@ -34,6 +40,12 @@
 /* Begin PBXFileReference section */
 		2E5FACA81AD5203300E3C771 /* BKStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKStream.h; sourceTree = "<group>"; };
 		2E5FACA91AD5203300E3C771 /* BKStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKStream.m; sourceTree = "<group>"; };
+		2E9F71241ADB9FE600133483 /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
+		2E9F71251ADB9FE600133483 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		2E9F71261ADB9FE600133483 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		2E9F71271ADB9FE600133483 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		2E9F71281ADB9FE600133483 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		2E9F71291ADB9FE600133483 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		2ECD905B1AD24B5F0057AC67 /* NetClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECD905F1AD24B5F0057AC67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ECD90601AD24B5F0057AC67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,6 +88,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E9F71221ADB9FE600133483 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F71231ADB9FE600133483 /* Images */,
+			);
+			path = Resource;
+			sourceTree = SOURCE_ROOT;
+		};
+		2E9F71231ADB9FE600133483 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F71241ADB9FE600133483 /* 0.png */,
+				2E9F71251ADB9FE600133483 /* 1.png */,
+				2E9F71261ADB9FE600133483 /* 2.png */,
+				2E9F71271ADB9FE600133483 /* 3.png */,
+				2E9F71281ADB9FE600133483 /* 4.png */,
+				2E9F71291ADB9FE600133483 /* 5.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		2ECD90521AD24B5F0057AC67 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +137,7 @@
 				2ECD90851AD24C730057AC67 /* BKTestViewController.m */,
 				2ECD906B1AD24B5F0057AC67 /* Images.xcassets */,
 				2ECD906D1AD24B5F0057AC67 /* LaunchScreen.xib */,
+				2E9F71221ADB9FE600133483 /* Resource */,
 				2ECD905E1AD24B5F0057AC67 /* Supporting Files */,
 			);
 			path = NetClient;
@@ -235,6 +269,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E9F712A1ADB9FE600133483 /* 0.png in Resources */,
+				2E9F712E1ADB9FE600133483 /* 4.png in Resources */,
+				2E9F712B1ADB9FE600133483 /* 1.png in Resources */,
+				2E9F712C1ADB9FE600133483 /* 2.png in Resources */,
+				2E9F712D1ADB9FE600133483 /* 3.png in Resources */,
+				2E9F712F1ADB9FE600133483 /* 5.png in Resources */,
 				2ECD906F1AD24B5F0057AC67 /* LaunchScreen.xib in Resources */,
 				2ECD906C1AD24B5F0057AC67 /* Images.xcassets in Resources */,
 			);
