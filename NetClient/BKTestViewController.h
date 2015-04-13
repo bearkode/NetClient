@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface BKTestViewController : UIViewController <NSNetServiceBrowserDelegate, NSNetServiceDelegate, NSStreamDelegate>
+@interface BKTestViewController : UIViewController
 
 
 @end

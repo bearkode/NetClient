@@ -16,6 +16,7 @@
 		2ECD90861AD24C730057AC67 /* BKTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD90851AD24C730057AC67 /* BKTestViewController.m */; };
 		2EEF90451ADB527C009EE369 /* BKMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF90441ADB527C009EE369 /* BKMotion.m */; };
 		2EEF90481ADB529F009EE369 /* BKVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF90471ADB529F009EE369 /* BKVector.m */; };
+		2EEF904B1ADB5BC8009EE369 /* BKMotionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF904A1ADB5BC8009EE369 /* BKMotionController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		2EEF90441ADB527C009EE369 /* BKMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKMotion.m; sourceTree = "<group>"; };
 		2EEF90461ADB529F009EE369 /* BKVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKVector.h; sourceTree = "<group>"; };
 		2EEF90471ADB529F009EE369 /* BKVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKVector.m; sourceTree = "<group>"; };
+		2EEF90491ADB5BC8009EE369 /* BKMotionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMotionController.h; sourceTree = "<group>"; };
+		2EEF904A1ADB5BC8009EE369 /* BKMotionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKMotionController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,16 +91,11 @@
 		2ECD905D1AD24B5F0057AC67 /* NetClient */ = {
 			isa = PBXGroup;
 			children = (
+				2EEF904C1ADB5C46009EE369 /* Model */,
 				2ECD90621AD24B5F0057AC67 /* AppDelegate.h */,
 				2ECD90631AD24B5F0057AC67 /* AppDelegate.m */,
 				2ECD90841AD24C730057AC67 /* BKTestViewController.h */,
 				2ECD90851AD24C730057AC67 /* BKTestViewController.m */,
-				2E5FACA81AD5203300E3C771 /* BKStream.h */,
-				2E5FACA91AD5203300E3C771 /* BKStream.m */,
-				2EEF90431ADB527C009EE369 /* BKMotion.h */,
-				2EEF90441ADB527C009EE369 /* BKMotion.m */,
-				2EEF90461ADB529F009EE369 /* BKVector.h */,
-				2EEF90471ADB529F009EE369 /* BKVector.m */,
 				2ECD906B1AD24B5F0057AC67 /* Images.xcassets */,
 				2ECD906D1AD24B5F0057AC67 /* LaunchScreen.xib */,
 				2ECD905E1AD24B5F0057AC67 /* Supporting Files */,
@@ -129,6 +127,21 @@
 				2ECD90791AD24B5F0057AC67 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2EEF904C1ADB5C46009EE369 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E5FACA81AD5203300E3C771 /* BKStream.h */,
+				2E5FACA91AD5203300E3C771 /* BKStream.m */,
+				2EEF90431ADB527C009EE369 /* BKMotion.h */,
+				2EEF90441ADB527C009EE369 /* BKMotion.m */,
+				2EEF90461ADB529F009EE369 /* BKVector.h */,
+				2EEF90471ADB529F009EE369 /* BKVector.m */,
+				2EEF90491ADB5BC8009EE369 /* BKMotionController.h */,
+				2EEF904A1ADB5BC8009EE369 /* BKMotionController.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +249,7 @@
 				2ECD90611AD24B5F0057AC67 /* main.m in Sources */,
 				2EEF90481ADB529F009EE369 /* BKVector.m in Sources */,
 				2E5FACAA1AD5203300E3C771 /* BKStream.m in Sources */,
+				2EEF904B1ADB5BC8009EE369 /* BKMotionController.m in Sources */,
 				2ECD90861AD24C730057AC67 /* BKTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
