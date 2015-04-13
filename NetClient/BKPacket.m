@@ -13,17 +13,20 @@
 static size_t kHeaderSize = sizeof(uint16_t);
 
 
-@implementation BKPacket
+NSData *BKEncodePacket(BKPacket *aPacket)
 {
-    uint16_t mHeader;
-    NSData  *mPayload;
+    NSMutableData *sResult  = [NSMutableData data];
+    NSData        *sPayload = [aPacket payload];
+    uint16_t       sLength  = htons([sPayload length]);
+    
+    [sResult appendBytes:&sLength length:sizeof(uint16_t)];
+    [sResult appendData:sPayload];
+    
+    return sResult;
 }
 
 
-@synthesize payload = mPayload;
-
-
-+ (instancetype)packetWithData:(NSData *)aData
+BKPacket *BKDecodePacket(NSData *aData)
 {
     uint16_t  sPacketLen     = 0;
     NSData   *sPayload       = nil;
@@ -42,13 +45,31 @@ static size_t kHeaderSize = sizeof(uint16_t);
     if ([aData length] >= sHandledLength)
     {
         sPayload = [aData subdataWithRange:NSMakeRange(kHeaderSize, sPacketLen)];
-
-        return [[[self alloc] initWithHeader:sPacketLen payload:sPayload] autorelease];
+        
+        return [[[BKPacket alloc] initWithHeader:sPacketLen payload:sPayload] autorelease];
     }
     else
     {
         return nil;
     }
+}
+
+
+@implementation BKPacket
+{
+    uint16_t mHeader;
+    NSData  *mPayload;
+}
+
+
+@synthesize payload = mPayload;
+
+
++ (BKPacket *)packetWithJSONObject:(id)aJSONObject
+{
+    NSData *sPayload = [NSJSONSerialization dataWithJSONObject:aJSONObject options:0 error:nil];
+
+    return [[[self alloc] initWithHeader:[sPayload length] payload:sPayload] autorelease];
 }
 
 

@@ -10,13 +10,20 @@
 #import <Foundation/Foundation.h>
 
 
+@class BKPacket;
+
+
+NSData   *BKEncodePacket(BKPacket *aPacket);
+BKPacket *BKDecodePacket(NSData *aData);
+
+
 @interface BKPacket : NSObject
 
 
 @property (nonatomic, readonly) NSData *payload;
 
 
-+ (instancetype)packetWithData:(NSData *)aData;
++ (BKPacket *)packetWithJSONObject:(id)aJSONObject;
 
 - (instancetype)initWithHeader:(uint16_t)aHeader payload:(NSData *)aPayload;
 

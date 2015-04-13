@@ -71,7 +71,7 @@
 - (void)stream:(BKStream *)aStream didReadData:(NSData *)aData
 {
     [aStream handleDataUsingBlock:^NSInteger(NSData *aData) {
-        BKPacket *sPacket = [BKPacket packetWithData:aData];
+        BKPacket *sPacket = BKDecodePacket(aData);
         
         if (sPacket)
         {
@@ -122,20 +122,15 @@
 {
     NSDictionary  *sDict = @{ @"class" : @"ping",
                               @"ti"    : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] };
-    [self sendJSONObject:sDict];
+    BKPacket      *sPacket = [BKPacket packetWithJSONObject:sDict];
+  
+    [self sendPacket:sPacket];
 }
 
 
-- (void)sendJSONObject:(id)aJSONObject
+- (void)sendPacket:(BKPacket *)aPacket
 {
-    NSData        *sPayload = [NSJSONSerialization dataWithJSONObject:aJSONObject options:0 error:nil];
-    uint16_t       sLength  = htons([sPayload length]);
-    NSMutableData *sPacket  = [NSMutableData data];
-    
-    [sPacket appendBytes:&sLength length:sizeof(uint16_t)];
-    [sPacket appendData:sPayload];
-    
-    [mStream writeData:sPacket];
+    [mStream writeData:BKEncodePacket(aPacket)];
 }
 
 
