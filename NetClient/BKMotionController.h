@@ -17,5 +17,7 @@
 - (void)start;
 - (void)stop;
 
+- (void)setupStreamWithNetService:(NSNetService *)aNetService;
+
 
 @end

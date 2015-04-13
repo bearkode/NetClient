@@ -8,6 +8,7 @@
  */
 
 #import "BKMotionController.h"
+#import "BKPacket.h"
 
 
 @implementation BKMotionController
@@ -44,55 +45,6 @@
 #pragma mark -
 
 
-- (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)aDomainName moreComing:(BOOL)aMoreDomainsComing
-{
-    NSLog(@"netServiceBrowser:didFindDomain:moreComing:");
-}
-
-
-- (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveDomain:(NSString *)aDomainName moreComing:(BOOL)aMoreDomainsComing
-{
-    NSLog(@"netServiceBrowser:didRemoveDomain:moreComing:");
-}
-
-
-- (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)aMoreServicesComing
-{
-    NSLog(@"netServiceBrowser:didFindService:moreComing:");
-    
-    [self setupStreamWithNetService:aNetService];
-    
-    [aNetServiceBrowser stop];
-}
-
-
-- (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)aMoreServicesComing
-{
-    NSLog(@"netServiceBrowser:didRemoveService:moreComing:");
-}
-
-
-- (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)aNetServiceBrowser
-{
-    NSLog(@"netServiceBrowserWillSearch:");
-}
-
-
-- (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)aErrorInfo
-{
-    NSLog(@"netServiceBrowser:didNotSearch:");
-}
-
-
-- (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)aNetServiceBrowser
-{
-    NSLog(@"netServiceBrowserDidStopSearch:");
-}
-
-
-#pragma mark -
-
-
 - (void)streamDidOpen:(BKStream *)aStream
 {
     NSLog(@"streamDidOpen");
@@ -119,34 +71,15 @@
 - (void)stream:(BKStream *)aStream didReadData:(NSData *)aData
 {
     [aStream handleDataUsingBlock:^NSInteger(NSData *aData) {
+        BKPacket *sPacket = [BKPacket packetWithData:aData];
         
-        if ([aData length] < 2)
+        if (sPacket)
         {
-            return 0;
-        }
-        
-        uint16_t sLength  = 0;
-        NSData  *sPayload = nil;
-        
-        [aData getBytes:&sLength length:2];
-        
-        sLength = ntohs(sLength);
-        NSInteger sHandledLength = sLength + 2;
-        
-        if ([aData length] >= sHandledLength)
-        {
-            sPayload = [aData subdataWithRange:NSMakeRange(2, sLength)];
-            
-            id sJSONObject = [NSJSONSerialization JSONObjectWithData:sPayload options:0 error:NULL];
+            id sJSONObject = [NSJSONSerialization JSONObjectWithData:[sPacket payload] options:0 error:NULL];
             NSLog(@"sJSONObject = %@", sJSONObject);
-            
-            return sHandledLength;
         }
-        else
-        {
-            return 0;
-        }
-        
+
+        return [sPacket length];
     }];
 }
 
