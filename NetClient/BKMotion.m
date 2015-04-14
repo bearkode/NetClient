@@ -87,7 +87,7 @@
 
 - (NSDictionary *)JSONObject
 {
-    return @{ @"class" : @"motion",
+    return @{ @"class" : @"hand",
               @"ti" : [NSNumber numberWithDouble:mTimeInterval],
               @"extendedFingerCount" : [NSNumber numberWithInteger:mExtendedFingerCount],
               @"palmPosition" : [mPalmPosition JSONObject],
